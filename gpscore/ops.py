@@ -461,6 +461,8 @@ def op_write(score: Score, p: dict):
     Replaces the voices given in the text; other voices of those bars are left alone.
     An empty voice line ('v2') clears that voice."""
     track = score.track(p["track"])
+    if track.kind == "other":
+        raise OpError(f"{track.label()}: writing notes is supported for fretted and drum tracks only")
     kit = DrumKit(track) if track.kind == "drums" else None
     staff = int(p.get("staff", 1))
     bars = parse_bars(p["text"])

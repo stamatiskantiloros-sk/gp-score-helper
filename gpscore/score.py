@@ -20,6 +20,7 @@ We keep the whole tree in lxml so that everything we don't understand is preserv
 from __future__ import annotations
 
 import copy
+import re
 from collections import Counter
 from dataclasses import dataclass, field
 from fractions import Fraction
@@ -30,6 +31,9 @@ from lxml import etree
 from .container import GpContainer
 from .music import DEFAULT_DYNAMIC, NOTE_VALUES, Rhythm, bar_length, spell
 
+# InstrumentSet/Type values whose notes are written as string + fret
+FRETTED_TYPES = re.compile(r"guitar|bass|ukulele|banjo|mandolin|bouzouki|sitar|viol|cello|harp|lute|koto",
+                           re.IGNORECASE)
 XML_HEADER = b'<?xml version="1.0" encoding="utf-8"?>\n'
 _PARSER = etree.XMLParser(strip_cdata=False, remove_blank_text=False, resolve_entities=False, huge_tree=True)
 
@@ -167,7 +171,7 @@ class Score:
             tuning = [int(x) for x in _ids(tuning_el.text if tuning_el is not None else "")]
             if itype == "drumKit":
                 kind = "drums"
-            elif tuning and any(tuning):
+            elif tuning and any(tuning) and FRETTED_TYPES.search(itype or "guitar"):
                 kind = "fretted"
             else:
                 kind = "other"

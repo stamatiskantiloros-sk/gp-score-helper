@@ -7,6 +7,10 @@ from .music import pitch_name
 from .notation import DrumKit, format_voice
 from .score import Score, Track, _ids, child_text
 
+MAJOR_KEYS = {-7: "Cb", -6: "Gb", -5: "Db", -4: "Ab", -3: "Eb", -2: "Bb", -1: "F", 0: "C", 1: "G", 2: "D",
+              3: "A", 4: "E", 5: "B", 6: "F#", 7: "C#"}
+MINOR_KEYS = {-7: "Ab", -6: "Eb", -5: "Bb", -4: "F", -3: "C", -2: "G", -1: "D", 0: "A", 1: "E", 2: "B",
+              3: "F#", 4: "C#", 5: "G#", 6: "D#", 7: "A#"}
 TEMPO_UNITS = {1: "e", 2: "q", 3: "q.", 4: "h", 5: "h."}
 
 
@@ -88,8 +92,9 @@ def masterbar_marks(score: Score, bar: int, tempos: dict[int, list[dict]]) -> st
     key = child_text(mb, "Key/AccidentalCount", "0")
     if bar == 1 or key != child_text(score.mb(bar - 1), "Key/AccidentalCount", "0"):
         k = int(key or 0)
-        if k or bar == 1:
-            marks.append(f"key={abs(k)}{'#' if k > 0 else 'b' if k < 0 else ''} {child_text(mb, 'Key/Mode', 'Major').lower()}")
+        mode = child_text(mb, "Key/Mode", "Major")
+        names = MINOR_KEYS if mode.lower() == "minor" else MAJOR_KEYS
+        marks.append(f"key={names.get(k, k)} {mode.lower()}")
     return " ".join(marks)
 
 
