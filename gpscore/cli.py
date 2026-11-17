@@ -179,7 +179,7 @@ def cmd_diff(a):
         for bar in range(1, sb.bar_count + 1):
             vb = view.bars_view(sb, t, [bar], legend=False).splitlines()[1:]
             va = view.bars_view(sa, other, [bar], legend=False).splitlines()[1:] if other and bar <= sa.bar_count else []
-            if va != vb:
+            if va[1:] != vb[1:]:   # notes only; bar marks are in the Structure part
                 changed.append((bar, va, vb))
         if changed:
             out.append(f"== {t.label()}: {len(changed)} bar(s) changed ==")

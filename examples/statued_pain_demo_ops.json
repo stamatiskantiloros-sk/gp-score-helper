@@ -1,0 +1,14 @@
+[
+ {"op":"section","bar":13,"letter":"A","text":"Theme"},
+ {"op":"section","bar":33,"letter":"B","text":"7/8 riff"},
+ {"op":"section","bar":37,"letter":"C","text":"Arpeggios"},
+ {"op":"dynamic","track":"Drumkit","bars":"37-40","value":"f"},
+ {"op":"flags","track":"Drumkit","bars":"37","on":"1","drums":["K","CH"],"add":[">"]},
+ {"op":"write","track":"Drumkit","text":"b38 v1 e(HHc) e(HHc+S[g]) e(HHc+S) e(HHc) e(HHc+K) e(HHc+S[g]) e(HHc+S) e(K+HHc)\nb40 v1 e(HHc) e(HHc) e(S+HHc) e(HHc) s(S) s(S[g]) s(tom2) s(tom2) s(tom3) s(tom4) s(tom5) s(K+tom5[^])\nb41 v1 e(K+CR1[>]){ff} e(HHc) e(S+HHc) e(HHc) e(HHc+K) e(HHc) e(S+HHc) e(K+HHc)"},
+ {"op":"hairpin","track":"Drumkit","bars":"40","on":"3,3.25,3.5,3.75,4,4.25,4.5,4.75","value":"cresc"},
+ {"op":"flags","track":"Electric Bass","bars":"33-36","strings":"3","add":["pm"]},
+ {"op":"write","track":"Electric Bass","text":"b40 v1 q.(~3:6) e(2:7) e(2:5) e(2:7[h]) e(2:9) e(3:7)"},
+ {"op":"tempo_ramp","from":45,"to":47,"from_bpm":114,"to_bpm":90},
+ {"op":"append_bars","count":4,"time":"4/4"},
+ {"op":"copy","tracks":"all","from":"37-40","to":154}
+]
