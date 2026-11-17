@@ -1,0 +1,9 @@
+{
+  "name": "gpscore-render",
+  "private": true,
+  "type": "module",
+  "description": "Renders bars of a Guitar Pro file to SVG with alphaTab (used by `gpscore render`).",
+  "dependencies": {
+    "@coderline/alphatab": "^1.9.0"
+  }
+}

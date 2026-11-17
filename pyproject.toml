@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpscore"
+version = "0.1.0"
+description = "Read, tidy and extend Guitar Pro 8 scores; built to be driven by an AI agent"
+requires-python = ">=3.10"
+dependencies = ["lxml>=4.9"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+gpscore = "gpscore.cli:main"
+
+[tool.setuptools]
+packages = ["gpscore"]
